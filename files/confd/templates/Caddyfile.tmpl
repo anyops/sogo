@@ -1,0 +1,23 @@
+{{or (getenv "CADDY_Host") "0.0.0.0:80"}} {
+
+log /dev/stdout
+
+    root /usr/lib/GNUstep/SOGo/WebServerResources
+
+    redir 302 {
+        if {path} is /
+        / /SOGo
+    }
+
+
+    proxy /SOGo localhost:20000 {
+        transparent
+    }
+
+   rewrite /SOGo.woa/WebServerResources/ {
+       regexp (.*)
+       to /{1}
+   }
+
+}
+

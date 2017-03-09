@@ -1,0 +1,24 @@
+version: '2'
+services:
+    sogo:
+        build: .
+        ports:
+            - "8000:80"
+        environment:
+            - SOGoProfileURL=postgresql://sogo:mysecretpassword@postgres:5432/sogo/sogo_user_profile
+            - OCSFolderInfoURL=postgresql://sogo:mysecretpassword@postgres:5432/sogo/sogo_folder_info
+            - OCSSessionsFolderURL=postgresql://sogo:mysecretpassword@postgres:5432/sogo/sogo_sessions_folder
+            - LDAP_baseDN=ou=people,dc=example,dc=com
+            - LDAP_bindDN=cn=omiadmin,ou=people,ou=admin,dc=example,dc=com
+            - LDAP_bindPassword=secretpass
+            - LDAP_hostname=ldaps://ldap.example.com:636
+            - MAIL_SOGoIMAPServer=imaps://imap.example.com:993
+            - MAIL_SOGoSMTPServer=mail.example.com
+            - MAIL_SOGoMailDomain=example.com
+            - CADDY_Host=0.0.0.0:80
+
+    postgres:
+        image: postgres
+        environment:
+            - POSTGRES_PASSWORD=mysecretpassword
+            - POSTGRES_USER=sogo

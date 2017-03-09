@@ -1,0 +1,18 @@
+[template]
+src = "sogo.conf.tmpl"
+dest = "/etc/sogo/sogo.conf"
+uid = 999
+gid = 999
+keys = [
+    "SOGoProfileURL",
+    "OCSFolderInfoURL",
+    "OCSSessionsFolderURL",
+    "LDAP",
+    "LDAP_baseDN",
+    "LDAP_bindDN",
+    "LDAP_bindPassword",
+    "LDAP_hostname",
+    "MAIL_SOGoIMAPServer",
+    "MAIL_SOGoSMTPServer",
+    "MAIL_SOGoMailDomain",
+]
